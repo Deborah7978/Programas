@@ -1,1 +1,1 @@
-En esta careta pondre los programas que he hecho en C++.
+En esta carpeta pondre mis programas en C++.
