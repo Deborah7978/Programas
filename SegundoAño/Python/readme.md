@@ -55,3 +55,39 @@ Este repositorio contiene ejemplos de uso de las bibliotecas de tratamiento de d
 *Desventajas:*
 - *Menos Madura:* Es una biblioteca más nueva y puede carecer de algunas funcionalidades avanzadas que están presentes en Pandas.
 - *Documentación Limitada:* Aunque está mejorando, la documentación y los recursos pueden no ser tan abundantes como los de Pandas.
+
+# 13-conjunto_datos_minist.py
+
+Este proyecto utiliza el conjunto de datos MNIST, que contiene imágenes de dígitos manuscritos del 0 al 9, para construir y entrenar un modelo de red neuronal utilizando TensorFlow y Keras. A continuación, se describen los pasos realizados en el código.
+
+1. Cargar el Dataset MNIST
+Se carga el conjunto de datos MNIST utilizando la función load_data() de Keras. Este conjunto de datos se divide en dos partes: un conjunto de entrenamiento y un conjunto de prueba.
+
+2. Normalizar los Datos
+Los valores de los píxeles de las imágenes se normalizan a un rango de 0 a 1 dividiendo por 255.0. Esto ayuda a mejorar la convergencia del modelo durante el entrenamiento.
+
+3. One-Hot Encoding de las Etiquetas
+Las etiquetas de clase se convierten a un formato de codificación one-hot utilizando la función to_categorical(). Esto es necesario para que el modelo pueda aprender a clasificar correctamente las imágenes.
+
+4. Crear el Modelo Secuencial
+Se define un modelo secuencial que consiste en varias capas:
+• Capa de entrada: Flatten, que convierte las imágenes de 28x28 píxeles en vectores de 784 elementos.
+• Capa oculta 1: Dense con 256 neuronas y activación ReLU.
+• Dropout: Se aplica una capa de Dropout con una tasa del 30% para evitar el sobreajuste.
+• Capa oculta 2: Otra capa Dense con 128 neuronas y activación ReLU.
+• Capa de salida: Dense con 10 neuronas y activación softmax para clasificar los dígitos.
+    
+5. Compilar el Modelo
+El modelo se compila utilizando el optimizador Adam y la función de pérdida categorical_crossentropy, además de establecer la métrica de precisión para evaluar el rendimiento.
+
+6. Early Stopping para Evitar Sobreentrenamiento
+Se implementa el mecanismo de EarlyStopping para detener el entrenamiento si la pérdida de validación no mejora después de 3 épocas, lo que ayuda a prevenir el sobreentrenamiento.
+
+7. Entrenar el Modelo
+El modelo se entrena durante 15 épocas con un tamaño de lote de 32, utilizando un 10% de los datos de entrenamiento para validación.
+
+8. Evaluar el Modelo en el Conjunto de Prueba
+Se evalúa el rendimiento del modelo en el conjunto de prueba y se imprime la pérdida y precisión obtenidas.
+
+9. Graficar la Precisión y la Pérdida
+Finalmente, se grafican las métricas de precisión y pérdida tanto para el conjunto de entrenamiento como para el de validación a lo largo de las épocas.
